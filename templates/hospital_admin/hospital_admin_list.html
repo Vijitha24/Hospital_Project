@@ -1,0 +1,8 @@
+{% extends 'partials/base.html' %} {% block content %}
+    <h1>Hospital Admins</h1>
+<a href="{% url 'hospital_admin:create_hospital_admin' %}">Add New Admin</a>    <ul>
+        {% for admin in admins %}
+            <p>{{ admin.full_name }} - {{ admin.email }} - {{ admin.position }}</p>
+        {% endfor %}
+    </ul>
+ {% endblock %}

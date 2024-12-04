@@ -1,0 +1,94 @@
+{% extends 'partials/base.html' %} {% block content %}
+<section class="pt-5 pb-5">
+    <div class="container">
+        <div class="row mt-0 mt-md-4">
+
+            <div class="col-lg-9 col-md-8 col-12">
+                <div class="row mb-4">
+                    <h4 class="mb-0 mb-4 fw-bold">Dashboard</h4>
+                    <div class="col-sm-12 col-lg-12 mb-6 mb-lg-0">
+                        <div class="d-flex justify-content-center align-items-center p-4 bg-danger bg-opacity-10 rounded-3">
+                            <span class="display-6 lh-1 text-purple mb-0">
+                                <i class="fas fa-calendar text-danger"></i>
+                            </span>
+
+                            <div class="ms-4">
+                                <div class="d-flex">
+						            <table class="table">
+					                    <thead>
+
+                                            <tr>
+                                                <th>Doctor Name </th>
+                                                <th>Department</th>
+                                                <th>Designation</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for doctor in doctors_list %}
+                                            <tr>
+                                                <td>{{doctor.full_name}}</td>
+                                                <td>{{doctor.specialization}}</td>
+                                                <td>{{doctor.bio}}</td>
+
+                                            </tr>
+                                            {% endfor %}
+
+                                        </tbody>
+
+					            </table
+                                </div>
+
+                            </div>
+                             <h5 class="mb-0 fw-bold">Total Doctors: {{ total_doctors }}</h5></br>
+                            <p>Total Patients: {{ total_patients }}</p></br>
+                            <p>Total Bill Amount: {{ total_bill_amount }}</p>
+                        </div>
+                    </div>
+                    <div>
+                         <h2>Services</h2>
+                          <table class="table mb-0 text-nowrap table-hover table-centered text-nowrap">
+
+                            <tr>
+                                <th>Services Name </th>
+                            </tr>
+                              {% for service in services %}
+                            <tr>
+                                <td>{{ service.name }}</td>
+                            </tr>
+                              {% endfor %}
+
+                          </table>
+                    </div>
+
+
+                <div class="card mb-4 mt-5">
+                    <div class="table-responsive overflow-y-hidden">
+                        <table class="table mb-0 text-nowrap table-hover table-centered text-nowrap">
+                            <thead class="table-light">
+                                <h4 class="mb-0 mb-4 fw-bold">Appointment Details </h4>
+                                <tr>
+                                    <th>Patient</th>
+                                    <th>Doctor</th>
+                                    <th>Service</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for appointment in appointments %}
+                             <tr>
+                                <td>{{ appointment.patient.full_name }}</td>
+                                <td>{{ appointment.doctor }}</td>
+                                <td>{{ appointment.service.name }}</td>
+                                <td>{{ appointment.appointment_date }}</td>
+                            </tr>
+            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
